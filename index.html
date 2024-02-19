@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mini Bio Instagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+    <!-- CSS only -->
+    <link rel="preload" href="./images/bg01.jpg" as="image" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/babel-standalone@6.26.0/babel.js"
+      crossorigin
+    ></script>
+
+    <script type="text/babel">
+      // ——————————————————————————————————————————————————
+      // TextScramble
+      // ——————————————————————————————————————————————————
+
+      class TextScramble {
+        constructor(el) {
+          this.el = el;
+          this.chars = "!<>-_\\/[]{}—=+*^?#________";
+          this.update = this.update.bind(this);
+        }
+        setText(newText) {
+          const oldText = this.el.innerText;
+          const length = Math.max(oldText.length, newText.length);
+          const promise = new Promise((resolve) => (this.resolve = resolve));
+          this.queue = [];
+          for (let i = 0; i < length; i++) {
+            const from = oldText[i] || "";
+            const to = newText[i] || "";
+            const start = Math.floor(Math.random() * 40);
+            const end = start + Math.floor(Math.random() * 40);
+            this.queue.push({ from, to, start, end });
+          }
+          cancelAnimationFrame(this.frameRequest);
+          this.frame = 0;
+          this.update();
+          return promise;
+        }
+        update() {
+          let output = "";
+          let complete = 0;
+          for (let i = 0, n = this.queue.length; i < n; i++) {
+            let { from, to, start, end, char } = this.queue[i];
+            if (this.frame >= end) {
+              complete++;
+              output += to;
+            } else if (this.frame >= start) {
+              if (!char || Math.random() < 0.28) {
+                char = this.randomChar();
+                this.queue[i].char = char;
+              }
+              output += `<span class="dud">${char}</span>`;
+            } else {
+              output += from;
+            }
+          }
+          this.el.innerHTML = output;
+          if (complete === this.queue.length) {
+            this.resolve();
+          } else {
+            this.frameRequest = requestAnimationFrame(this.update);
+            this.frame++;
+          }
+        }
+        randomChar() {
+          return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+      }
+
+      // ——————————————————————————————————————————————————
+      // Example
+      // ——————————————————————————————————————————————————
+
+      const phrases = [
+        "Would you like me to give you a formula for success?",
+        "It's quite simple, really",
+        "Double your rate of failure",
+        "You are thinking of failure as the enemy of success",
+        "But it isn't at all",
+        "You can be discouraged by failure or you can learn from it",
+        "so go ahead and make mistakes",
+        "Make all you can",
+        "Because",
+        "remember that's where you will find success",
+        "--------------------------------",
+      ];
+
+      const el = document.querySelector(".text");
+      const fx = new TextScramble(el);
+
+      let counter = 0;
+      const next = () => {
+        fx.setText(phrases[counter]).then(() => {
+          setTimeout(next, 800);
+        });
+        counter = (counter + 1) % phrases.length;
+      };
+
+      next();
+    </script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        VANTA.BIRDS({
+          el: "#vanta",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: true,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          backgroundAlpha: 0.0,
+          color1: 0x4e5511,
+          color2: 0x80fa43,
+          wingSpan: 39.0,
+          speedLimit: 9.0,
+          separation: 28.0,
+          alignment: 19.0,
+          quantity: 5.0,
+        });
+
+        setTimeout(() => {
+          const main = document.querySelector("main");
+          main.style.opacity = 1;
+          main.style.filter = "blur(0px)";
+        }, 1000);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="vanta"></div>
+    <main class="animated">
+      <div class="d-flex content-center">
+        <div class="card">
+          <div class="card-body custom-scrollbar">
+            <header>
+              <img src="./images/DIOO.jpg" />
+              <h1>@diox_r</h1>
+            </header>
+            <div class="card-title">
+              <span class="subtitle"><b>DIO APRIANSYAH</b></span>
+              <br />
+              <span class="subtitle"> Wibu Not Found | "404"; </span>
+              <br />
+            </div>
+            <div class="card-title">
+              <div id="container">
+                Fav Anime
+                <div id="flip">
+                  <div><div>ONE PIECE</div></div>
+                  <div><div>NARUTO</div></div>
+                  <div><div>DEMON SLAYER</div></div>
+                </div>
+                KAKKOI DESU NE!
+              </div>
+            </div>
+            <div class="card-title">
+              <div class="container">
+                <div class="text"></div>
+              </div>
+            </div>
+            <ul>
+              <li>
+                <a href="#">
+                  <img
+                    src="./images/portfolio.svg"
+                    alt="Masih Proses Pembuatan"
+                    width="20"
+                  />
+                  Simple Portfolio
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img
+                    src="./images/project.svg"
+                    alt="Belum Ada Project"
+                    width="20"
+                  />
+                  Project Campus
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/diox_r?igshid=YmMyMTA2M2Y=">
+                  <img src="./images/instagram.svg" alt="" width="20" />
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="https://wasap.at/yz6cuK">
+                  <img src="./images/whatsapp.svg" alt="Homepage" width="20" />
+                  Whatsapp
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/dio.apriansyah.94">
+                  <img src="./images/facebook.svg" alt="Homepage" width="20" />
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img
+                    src="./images/twitter.svg"
+                    alt="Belum Punya Twitter"
+                    width="20"
+                  />
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DIOAPRIANSYAH">
+                  <img src="./images/github.svg" alt="GitHub" width="20" />
+                  GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

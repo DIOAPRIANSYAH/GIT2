@@ -1,0 +1,242 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.845);
+  background-size: cover;
+}
+
+#vanta {
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main {
+  position: relative;
+}
+
+main.animated {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 2s ease-in-out, filter 2s ease-in-out;
+}
+
+header {
+  margin-top: 3em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header > img {
+  width: 10em;
+  height: 10em;
+  border-radius: 100%;
+  border: 5px solid rgb(28, 27, 31);
+  box-shadow: rgba(22, 22, 26, 0.24) 0px 6px 8px 0px;
+}
+
+header > h1 {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: bold;
+  border-radius: 1em;
+  background-color: #000a;
+  color: #fff;
+  padding: 0.3em 0.6em;
+  border: 1px solid rgba(11, 10, 10, 0.667);
+  backdrop-filter: blur(10px) saturate(160%) contrast(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%) contrast(180%);
+  font-family: 'Courier New', Courier, monospace;
+
+}
+
+ul {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 480px;
+}
+
+ul > li {
+  background-color: #fffa;
+  backdrop-filter: blur(10px) saturate(160%) contrast(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%) contrast(180%);
+  border-radius: 10em;
+  margin: 1.4em 0;
+  box-shadow: rgb(28 32 93 / 24%) 0px 2px 8px 0px;
+}
+
+ul > li > a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  padding: 1em;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  
+}
+.card {
+  height: 90vh;
+  padding: 20px;
+  box-shadow: 4px -4px 8px 3px #0000004d;
+  background: #ffffff21;
+  margin: 16px;
+  text-align: center;
+  border-radius: 12px;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.d-flex {
+  display: flex;
+}
+.content-center {
+  justify-content: center;
+}
+.card-title {
+  margin-bottom: 16px;
+  color: white;
+  font-weight: 700;
+  background: #2927278f;
+  padding: 8px;
+  border-radius: 8px;
+}
+.btn-action {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 8px 10px;
+  background: #2927278f;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 3px solid rgb(68, 12, 210);
+}
+.card-body {
+  z-index: 3;
+  position: relative;
+  max-height: 90%;
+  overflow-x: hidden;
+  padding: 20px;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  background: white;
+}
+.subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Courier New', Courier, monospace;
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+#container {
+  color:#999;
+  text-transform: uppercase;
+  font-size:20px;
+  font-weight:bold;
+  padding-top:5px;  
+  width:100%;
+  bottom:45%;
+}
+
+#flip {
+  height:50px;
+  overflow:hidden;
+}
+
+#flip > div > div {
+  color:#fff;
+  padding:4px 12px;
+  height:45px;
+  margin-bottom:45px;
+  display:inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+
+#flip div div {
+  background:#cccc12;
+}
+#flip div:first-child div {
+  background:#7514f3;
+}
+#flip div:last-child div {
+  background:#DC143C;
+}
+
+@keyframes show {
+  0% {margin-top:-270px;}
+  5% {margin-top:-180px;}
+  33% {margin-top:-180px;}
+  38% {margin-top:-90px;}
+  66% {margin-top:-90px;}
+  71% {margin-top:0px;}
+  99.99% {margin-top:0px;}
+  100% {margin-top:-270px;}
+}
+
+p {
+  position:fixed;
+  width:100%;
+  bottom:30px;
+  font-size:12px;
+  color:#999;
+  margin-top:200px;
+}
+.container {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.text {
+  font-weight: 100;
+  font-size: 15px;
+  color: #fafafa;
+  font-family: 'Courier New', Courier, monospace;
+}
+.dud {
+  color: #757575;
+}
